@@ -6,4 +6,4 @@ version: 0.1.0
 dependencies:
   - name: generic-kafka-app
     version: 0.1.0
-    repository: https://raw.githubusercontent.com/[votre-org]/DEVOPS_HELM_generic_kafka/github-pages
+    repository: https://raw.githubusercontent.com/[votre-org]/DEVOPS_HELM_generic_kafka_app/github-pages
