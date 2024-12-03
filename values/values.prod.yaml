@@ -1,0 +1,7 @@
+generic-kafka:
+  kafka:
+    servers: "kafka-prod-kafka-bootstrap.kafka-prod:9092"
+  
+  application:
+    config:
+      defaultDays: "7"

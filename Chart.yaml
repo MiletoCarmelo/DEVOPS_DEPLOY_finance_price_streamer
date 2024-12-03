@@ -1,0 +1,9 @@
+apiVersion: v2
+name: finance-price-streamer-deploy
+description: Deployment configuration for Finance Price Streamer
+type: application
+version: 0.1.0
+dependencies:
+  - name: generic-kafka
+    version: 0.1.0
+    repository: https://raw.githubusercontent.com/[votre-org]/DEVOPS_HELM_generic_kafka/github-pages
