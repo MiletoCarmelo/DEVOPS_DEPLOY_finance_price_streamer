@@ -4,6 +4,8 @@ description: Deployment configuration for Finance Price Streamer
 type: application
 version: 0.1.1
 dependencies:
+dependencies:
   - name: generic-kafka-app
     version: 0.1.1
     repository: https://raw.githubusercontent.com/MiletoCarmelo/DEVOPS_HELM_generic_kafka_app/github-pages
+    alias: kafka-app
