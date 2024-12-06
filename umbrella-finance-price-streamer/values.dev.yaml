@@ -1,4 +1,4 @@
-generic-kafka-app:
+kafka-app:
   image:
     repository: ghcr.io/miletocarmelo/finance_price_streamer
     tag: latest
