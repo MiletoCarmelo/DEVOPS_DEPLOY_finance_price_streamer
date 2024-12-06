@@ -5,7 +5,7 @@ kafka-app:
     pullPolicy: Always
 
   kafka:
-    servers: "kafka-dev-kafka-bootstrap.kafka-dev:9092"
+    servers: "kafka-dev-service.kafka-dev:9092"  # Mise à jour de l'adresse Kafka
     topics:
       - name: "price-data"
         partitions: 3
@@ -32,7 +32,7 @@ kafka-app:
         port: 8000
       initialDelaySeconds: 30
       periodSeconds: 10
-      
+
   # Configuration du port
   ports:
     - name: http
