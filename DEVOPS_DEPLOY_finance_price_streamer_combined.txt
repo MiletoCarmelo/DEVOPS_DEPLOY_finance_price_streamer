@@ -1,0 +1,58 @@
+==== ./umbrella-finance-price-streamer/values.dev.yaml ====
+
+kafka-app:
+  image:
+    repository: ghcr.io/miletocarmelo/finance_price_streamer
+    tag: latest
+    pullPolicy: Always
+
+  kafka:
+    servers: "kafka-dev-kafka-bootstrap.kafka-dev:9092"
+    topics:
+      - name: "price-data"
+        partitions: 3
+        replicationFactor: 1
+
+  application:
+    type: "producer"
+    config:
+      defaultSymbol: "JPY"
+      defaultDays: "3"
+      defaultSpeed: "1.0"
+
+==== ./umbrella-finance-price-streamer/Chart.yaml ====
+
+apiVersion: v2
+name: finance-price-streamer
+description: Deployment configuration for Finance Price Streamer
+type: application
+version: 0.1.1
+dependencies:
+dependencies:
+  - name: generic-kafka-app
+    version: 0.1.1
+    repository: https://raw.githubusercontent.com/MiletoCarmelo/DEVOPS_HELM_generic_kafka_app/github-pages
+    alias: kafka-app
+
+==== ./umbrella-finance-price-streamer/values.prod.yaml ====
+
+generic-kafka-app:
+  image:
+    repository: ghcr.io/miletocarmelo/finance_price_streamer
+    tag: latest
+    pullPolicy: Always
+
+  kafka:
+    servers: "kafka-dev-kafka-bootstrap.kafka-dev:9092"
+    topics:
+      - name: "price-data"
+        partitions: 3
+        replicationFactor: 1
+
+  application:
+    type: "producer"
+    config:
+      defaultSymbol: "JPY"
+      defaultDays: "3"
+      defaultSpeed: "1.0"
+

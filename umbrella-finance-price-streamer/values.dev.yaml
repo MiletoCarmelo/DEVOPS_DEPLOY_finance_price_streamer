@@ -17,3 +17,24 @@ kafka-app:
       defaultSymbol: "JPY"
       defaultDays: "3"
       defaultSpeed: "1.0"
+
+  # Ajout des sondes de santé
+  probes:
+    livenessProbe:
+      httpGet:
+        path: /health/live
+        port: 8000
+      initialDelaySeconds: 30
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /health/ready  
+        port: 8000
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      
+  # Configuration du port
+  ports:
+    - name: http
+      containerPort: 8000
+      protocol: TCP
