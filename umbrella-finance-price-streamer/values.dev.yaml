@@ -4,24 +4,37 @@ kafka-app:
     tag: latest
     pullPolicy: Always
 
-  env:
-    - name: KAFKA_SERVERS
-      value: "kafka-dev-service.kafka-dev:9092"
-    - name: DEFAULT_SYMBOL
-      value: "JPY"
-    - name: DEFAULT_DAYS
-      value: "3"
-    - name: DEFAULT_SPEED
-      value: "1.0"
-    - name: KAFKA_TOPIC
-      value: "price-data"
-
+  # env:
+  #   - name: KAFKA_SERVERS
+  #     value: "kafka-dev-service.kafka-dev:9092"
+  #   - name: DEFAULT_SYMBOL
+  #     value: "JPY"
+  #   - name: DEFAULT_DAYS
+  #     value: "3"
+  #   - name: DEFAULT_SPEED
+  #     value: "1.0"
+  #   - name: KAFKA_TOPIC
+  #     value: "price-data"
+  
   kafka:
     servers: "kafka-dev-service.kafka-dev:9092"
+    consumer:
+      groupId: "default-group"
+      autoOffsetReset: "earliest"
+      enableAutoCommit: true
     topics:
       - name: "price-data"
         partitions: 3
         replicationFactor: 1
+
+  application:
+    type: "producer"
+    config:
+      defaultSymbol: "JPY"
+      defaultDays: "3"
+      defaultSpeed: "1.0"
+      customConfig:
+        KAFKA_TOPIC: "price-data"
 
   resources:
     requests:
