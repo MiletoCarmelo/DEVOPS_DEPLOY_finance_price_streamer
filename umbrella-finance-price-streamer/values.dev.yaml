@@ -58,7 +58,7 @@ kafka-app:
       httpGet:
         path: /health/ready
         port: 8000
-      initialDelaySeconds: 30
+      initialDelaySeconds:  60  # Augmenter à 60 secondes (ou plus si nécessaire)
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
