@@ -25,8 +25,8 @@ kafka-app:
       enableAutoCommit: true
     topics:
       - name: "price-data"
-        partitions: 3
-        replicationFactor: 1
+        partitions: 1 # normally 3 
+        replicationFactor: 1 # normally 3 
 
   application:
     type: "producer"
@@ -58,7 +58,7 @@ kafka-app:
       httpGet:
         path: /health/ready
         port: 8000
-      initialDelaySeconds:  60  # Augmenter à 60 secondes (ou plus si nécessaire)
+      initialDelaySeconds:  90  # Augmenter à 90 secondes ou plus, selon la durée nécessaire pour la préparation
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
