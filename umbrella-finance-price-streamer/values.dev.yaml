@@ -7,6 +7,8 @@ kafka-app:
   env:
     - name: KAFKA_SERVERS
       value: "kafka-dev-service.kafka-dev:9092"
+    - name: DEFAULT_SYMBOL
+      value: "JPY"
 
   kafka:
     servers: "kafka-dev-service.kafka-dev:9092"  # Mise à jour de l'adresse Kafka
