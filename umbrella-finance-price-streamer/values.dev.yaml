@@ -23,10 +23,6 @@ kafka-app:
       groupId: "default-group"
       autoOffsetReset: "earliest"
       enableAutoCommit: true
-    topics:
-      - name: "price-data"
-        partitions: 1 # normally 3 
-        replicationFactor: 1 # normally 3 
 
   application:
     type: "producer"
@@ -35,7 +31,7 @@ kafka-app:
       defaultDays: "3"
       defaultSpeed: "1.0"
       customConfig:
-        KAFKA_TOPIC: "price-data"
+        KAFKA_TOPIC: "finance-price-stream"
 
   resources:
     requests:
