@@ -3,27 +3,23 @@ kafka-app:
     repository: ghcr.io/miletocarmelo/finance_price_streamer
     tag: latest
     pullPolicy: Always
-
-  # env:
-  #   - name: KAFKA_SERVERS
-  #     value: "kafka-dev-service.kafka-dev:9092"
-  #   - name: DEFAULT_SYMBOL
-  #     value: "JPY"
-  #   - name: DEFAULT_DAYS
-  #     value: "3"
-  #   - name: DEFAULT_SPEED
-  #     value: "1.0"
-  #   - name: KAFKA_TOPIC
-  #     value: "price-data"
-  
+  env:
+    - name: KAFKA_BOOTSTRAP_SERVERS
+      value: "kafka-dev-kafka-bootstrap.kafka-dev.svc.cluster.local:9092"
+    - name: DEFAULT_SYMBOL
+      value: "JPY"
+    - name: DEFAULT_DAYS
+      value: "3"
+    - name: DEFAULT_SPEED
+      value: "1.0"
+    - name: KAFKA_TOPIC
+      value: "finance-price-stream"
   kafka:
-    # servers: "kafka-dev-service.kafka-dev:9092"
-    servers: "kafka-dev-service.kafka-dev.svc.cluster.local:9092"
+    servers: "kafka-dev-kafka-bootstrap.kafka-dev.svc.cluster.local:9092"
     consumer:
       groupId: "default-group"
       autoOffsetReset: "earliest"
       enableAutoCommit: true
-
   application:
     type: "producer"
     config:
@@ -32,7 +28,6 @@ kafka-app:
       defaultSpeed: "1.0"
       customConfig:
         KAFKA_TOPIC: "finance-price-stream"
-
   resources:
     requests:
       memory: "256Mi"
@@ -40,7 +35,6 @@ kafka-app:
     limits:
       memory: "512Mi"
       cpu: "500m"
-
   probes:
     livenessProbe:
       httpGet:
@@ -54,16 +48,14 @@ kafka-app:
       httpGet:
         path: /health/ready
         port: 8000
-      initialDelaySeconds:  90  # Augmenter à 90 secondes ou plus, selon la durée nécessaire pour la préparation
+      initialDelaySeconds: 90
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
-
   ports:
     - name: http
       containerPort: 8000
       protocol: TCP
-
   strategy:
     type: RollingUpdate
     rollingUpdate:
